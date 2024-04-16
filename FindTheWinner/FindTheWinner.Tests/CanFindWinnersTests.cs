@@ -14,7 +14,7 @@ namespace FindTheWinner.Tests
             var myAddresses = @"Assets\MyAddressesWithFakeWinners.csv".ReadMyAddresses();
             var winners = myAddresses.GetMyWinners(theirAddresses).ToArray();
 
-            winners.Should().NotBeEmpty();
+            winners.Should().NotBeEmpty().And.HaveCount(2);
 
             foreach (var address in winners)
             {
