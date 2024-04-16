@@ -18,17 +18,23 @@ namespace FindTheWinner
             using (var csv = new CsvReader(reader: reader, configuration: csvConfig))
             {
                 var parsedRecords = csv.GetRecords<MyAddressDto>().ToArray();
-                var myaddresses = parsedRecords.Select(x => new MyAddress(x.Number, x.Name, x.Address))
+                var myaddresses = parsedRecords.Select(x 
+                    => new MyAddress
+                        (
+                            uint.Parse(x.Number.Trim()), 
+                            x.Name.Trim(), 
+                            x.Address.Trim()
+                        ))
                     .ToArray();
                 return myaddresses;
             }
         }
 
-        private sealed record MyAddressDto
-        {
-            public uint Number { get; set; }
-            public string Name { get; set; }
-            public string Address { get; set; }
-        }
+        private record struct MyAddressDto
+            (
+                string Number, 
+                string Name, 
+                string Address
+            );
     }
 }
