@@ -26,7 +26,6 @@ namespace FindTheWinner
                     )
                     .ToArray();
 
-                File.WriteAllText("Z:\\requestDump.json", JsonConvert.SerializeObject(addresses));
                 return addresses;
             }
         }
